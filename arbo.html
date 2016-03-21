@@ -1,0 +1,55 @@
+<html>
+<head>
+<title> Peer Counselling App</title>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="arbor.js"></script>
+<script src="graphics.js"></script>
+<script src="renderer.js"></script>
+</head>
+<body>
+<div style="background-color:brown;padding:50px;">
+<h1> Peer Counselling Chat Application</h1>
+<p>Chat Application to provide counselling without revealing your identity. Lets join hands and help our peers in overcoming these spheres</p>
+<p> click next to proceed. <a href="frameset.html" style="color:white">Next</a></p>
+<canvas id="viewport" width="1200" height="600">
+</canvas>
+<script language="javascript" type="text/javascript">
+var sys = arbor.ParticleSystem(900,400,0.5);
+sys.parameters({gravity:true});
+sys.renderer = Renderer("#viewport") ;
+//var Animals = sys.addNode('Animals',{'color':'red','shape':'dot','label':'Animals'});
+//var dogs = sys.addNode('dogs',{'color':'green','shape':'dot','label':'dogs'});
+//var cats = sys.addNode('cats',{'color':'blue','shape':'dot','label':'cats'});
+//sys.addEdge(Animals, dogs);
+//sys.addEdge(Animals, cats);
+var data = {
+nodes:{
+Animals:{'color':'red','shape':'dot','label':'Depression', 'link':'http://stackoverflow.com'},
+dogs:{'color':'blue','shape':'dot','label':'Drug Abuse'},
+cats:{'color':'blue','shape':'dot','label':'Trauma'}
+},
+edges:{
+Animals:{ dogs:{}, cats:{} }
+}
+};
+sys.graft(data);
+setTimeout(function(){
+var postLoadData = {
+nodes:{
+doe:{'color':'orange','shape':'dot','label':'Low Grades'},
+foe:{'color':'green','shape':'dot','label':'Hazing'},
+fluffy:{'color':'blue','shape':'dot','label':'Peer Pressure'}
+},
+edges:{
+dogs:{ foe:{} },
+cats:{ fluffy:{} },
+doe:{ fluffy:{},foe:{} }
+}
+};
+sys.graft(postLoadData);
+},5000);
+
+</script>
+</div>
+</body>
+</html>
